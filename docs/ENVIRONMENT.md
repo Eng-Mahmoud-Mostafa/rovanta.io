@@ -16,7 +16,7 @@ Configure real values locally in `.env.local` and in Vercel project settings. Th
 | `RESEND_API_KEY` | Server-only | Sending emails through Resend. |
 | `RESEND_FROM_EMAIL` | Server-only | Verified sender address for Resend emails. |
 | `GEMINI_API_KEY` | Server-only | AI assistant and workflow recommendations. |
-| `CRON_SECRET` | Server-only | Protecting scheduler endpoints. |
+| `CRON_SECRET` | Server-only | Protecting `/api/scheduler` for Vercel Cron or external cron calls. |
 
 ## Local Configuration
 
@@ -32,3 +32,13 @@ Configure real values locally in `.env.local` and in Vercel project settings. Th
 4. Redeploy after changing production variables.
 
 Never commit `.env`, `.env.local`, `.env.production`, or secret files.
+
+## Scheduler Secret
+
+`/api/scheduler` requires this header:
+
+```text
+Authorization: Bearer $CRON_SECRET
+```
+
+Configure the same `CRON_SECRET` in Vercel before enabling Vercel Cron or an external cron service.

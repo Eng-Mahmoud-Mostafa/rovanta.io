@@ -67,3 +67,7 @@ export function requireEnv(name: string): string {
 export function getOptionalEnv(name: string): string | undefined {
   return process.env[name];
 }
+
+export function hasEnv(name: string): boolean {
+  return Boolean(getOptionalEnv(name));
+}
